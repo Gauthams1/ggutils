@@ -2,6 +2,9 @@
 # ==============================================================================
 
 import os
+from ggutils.gg_verbosity import GGVerbosePrinting
+
+GGPrint = GGVerbosePrinting(2)
 
 def find_all_files_and_dirs(target_directory):
     for root, dirs, files in os.walk(target_directory):
@@ -11,14 +14,14 @@ def find_all_files_and_dirs(target_directory):
 
 
 if __name__ == '__main__':
-    print('file_util')
-    print('e.g. find_all_files_and_dirs in the current dir')
+    GGPrint.print('file_util')
+    GGPrint.print('e.g. find_all_files_and_dirs in the current dir')
 
     target_directory = './'
     try:
         for file in find_all_files_and_dirs(target_directory):
-            print('find file or dir:{}'.format(file))
+            GGPrint.print('find file or dir:{}'.format(file))
 
     except FileNotFoundError:
-        print('FileNotFound in the current dir')
+        GGPrint.print('FileNotFound in the current dir')
 

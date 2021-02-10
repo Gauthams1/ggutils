@@ -5,6 +5,9 @@
 
 import logging
 import logging.config as logging_config
+from ggutils.gg_verbosity import GGVerbosePrinting
+
+GGPrint = GGVerbosePrinting(2)
 
 def get_logger(fname=None):
     '''
@@ -19,12 +22,12 @@ def get_logger(fname=None):
             continue
         try:
             # construct logger module
-            print('try to get_logger_module from config file: {}'.format(fname))
+            GGPrint.print('try to get_logger_module from config file: {}'.format(fname))
             logging.config.fileConfig(fname)
             logger = logging.getLogger()
             logger.info('DONE get_logger_module from config file: {}'.format(fname))
         except (KeyError, FileNotFoundError) as e:
-            print('Faild to get_logger_module from config file: {} with error: {}'.format(fname, e))
+            GGPrint.print('Faild to get_logger_module from config file: {} with error: {}'.format(fname, e))
             continue
     logger = logging.getLogger(__name__)
     logger.info('get_logger_module default logger')

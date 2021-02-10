@@ -21,10 +21,12 @@ log = get_module_logger()
 
 # sys.path.append("../") # for local test
 from ggutils.gg_hash import GGHash
+from ggutils.gg_verbosity import GGVerbosePrinting
 
+GGPrint = GGVerbosePrinting(2)
 class DataProcessor:
     def __init__(self):
-        print('TODO')
+        GGPrint.print('TODO')
 
 def _read_csv_with_ckecking(file_path, parse_dates=None, encoding=None):
 
@@ -49,18 +51,18 @@ def read_csv_with_ckecking(file_path, **kwargs):
             raise e
 
 def _ckecking(file_path, *args, **kwargs):
-    print(args)
-    print(kwargs)
-    print(locals())
+    GGPrint.print(args)
+    GGPrint.print(kwargs)
+    GGPrint.print(locals())
     for k in kwargs:
         v = kwargs[k]
-        print('k:{}, v:{}'.format(k, v))
+        GGPrint.print('k:{}, v:{}'.format(k, v))
 
     kwargs['encoding'] = 'shift_jis'
 
     df = pd.read_csv(file_path, **kwargs)
-    print('len of df:{}'.format(len(df)))
-    print('df.head:{}'.format(df.head()))
+    GGPrint.print('len of df:{}'.format(len(df)))
+    GGPrint.print('df.head:{}'.format(df.head()))
     assert len(df) > 0
 
 
